@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (props) => {
 	return (
-    			<li>
+    			<li onClick={props.onClick}>
       	  	  	  <a href="#" className="block hover:bg-gray-50">
         			<div className="flex items-center px-4 py-4 sm:px-6">
           	  	  	  <div className="min-w-0 flex-1 flex items-center">
@@ -11,22 +11,12 @@ export default (props) => {
             			</div>
             			<div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
               	  	  	  <div>
-                			<p className="text-sm font-medium text-indigo-600 truncate">{props.profile.login}</p>
-                			<p className="mt-2 flex items-center text-sm text-gray-500">
-                  	  	  	  <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    			<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    			<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  	  	  	  </svg>
-                  	  	  	  <span className="truncate">{props.profile.email}</span>
-                			</p>
+                			<h3 className="text-md font-medium text-gray-800 truncate">{props.profile.login}</h3>
               	  	  	  </div>
-              	  	  	  <div className="hidden md:block align-middle">
-                			<div>
-                  	  	  	  <p className="text-sm text-gray-900">
-                    			Applied on
-                    			<time dateTime="2020-01-07">January 7, 2020</time>
+              	  	  	  <div className="flex items-center justify-end">
+                  	  	  	  <p className="text-sm text-right text-gray-900">
+        							Repo #<span>{props.profile.public_repos}</span>
                   	  	  	  </p>
-                			</div>
               	  	  	  </div>
             			</div>
           	  	  	  </div>

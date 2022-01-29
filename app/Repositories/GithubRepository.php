@@ -46,6 +46,7 @@ class GithubRepository
 	public function getExistingUsers($users, $cache_expired = false)
 	{
 		$filters['login'] = $users->pluck('login')->all();
+		$filters['limit'] = 100;
 
 		if ($cache_expired) {
 			$filters['last_fetched_at'] = [
@@ -70,6 +71,7 @@ class GithubRepository
 	public function createUsersIfNotExists(Collection $users)
 	{
 		$existingUsers = $this->getExistingUsers($users);
+		logger($existingUsers);
 
 		$this->profileRepository->bulkInsert($users->except($existingUsers));
 	}

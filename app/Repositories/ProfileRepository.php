@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Profile;
 use App\Models\ProfileDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -96,6 +97,8 @@ class ProfileRepository
 		$details->twitter_username = Arr::get($user, 'twitter_username');
 		$details->public_gists = Arr::get($user, 'public_gists');
 		$details->following = Arr::get($user, 'following');
+		$details->created_at = Carbon::parse(Arr::get($user, 'created_at'))->toDateTimeString();
+		$details->updated_at = Carbon::parse(Arr::get($user, 'updated_at'))->toDateTimeString();
 
 		return ['profile' => $profile, 'detail' => $details];
 	}

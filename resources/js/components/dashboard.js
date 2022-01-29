@@ -30,6 +30,7 @@ const Dashboard = () => {
 	}
 
 	const onChange = e => {
+		setInfo({...info, ...{current_page: 1}});
 		setQuery(e.target.value);
 	}
 
