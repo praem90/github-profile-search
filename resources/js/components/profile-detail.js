@@ -57,6 +57,9 @@ const PanelBody = props => (
     						<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
     							Following {props.details.detail?.following}
     						</span>
+    						<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+    							View Count {props.details.view_count}
+    						</span>
     					</p>
     				</div>
     			</div>

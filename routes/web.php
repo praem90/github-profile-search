@@ -27,10 +27,7 @@ Route::middleware('auth')->group(function () {
     	return view('dashboard');
 	})->name('dashboard');
 
-	Route::middleware(RequestLogMiddleware::class)->get('profile/search', SearchController::class)->name('search');
-
-	Route::middleware(RequestLogMiddleware::class)->get('profile/popular', PopularProfilesController::class)->name('popular');
-	Route::middleware(RequestLogMiddleware::class)->get('profile/{username}', ProfileController::class)->name('profile');
+	require __DIR__ . '/search.php';
 });
 
 require __DIR__.'/auth.php';
