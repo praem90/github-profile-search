@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\SanctumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/token', [SanctumController::class, 'token']);
+Route::post('/register', [SanctumController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
 	require __DIR__ . '/search.php';

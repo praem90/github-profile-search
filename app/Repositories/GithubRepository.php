@@ -33,7 +33,7 @@ class GithubRepository
 
 		// TODO: Optimize. Gateway timeout exception because of making 30 more requsts
 		// to get profile detail
-		$users = collect($response['items'])->take(10)->map(function ($user) {
+		$users = collect($response['items'])->map(function ($user) {
 			return GitHub::api('user')->show($user['login']);
 		})->keyBy('login');
 
@@ -71,7 +71,6 @@ class GithubRepository
 	public function createUsersIfNotExists(Collection $users)
 	{
 		$existingUsers = $this->getExistingUsers($users);
-		logger($existingUsers);
 
 		$this->profileRepository->bulkInsert($users->except($existingUsers));
 	}

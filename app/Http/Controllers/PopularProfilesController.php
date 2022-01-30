@@ -15,8 +15,8 @@ class PopularProfilesController extends Controller
 			'view_count' => 'desc',
 		];
 
-		$profiles = $profileRepository->get($filters, ['login', 'avatar_url', 'public_repos']);
+		$profiles = $profileRepository->get($filters, ['login', 'avatar_url', 'public_repos', 'view_count']);
 
-		return response()->json($profiles);
+		return response()->json($profiles->items());
 	}
 }
