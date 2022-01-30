@@ -20,7 +20,7 @@ const searchBar = props => {
       	  	  	  <input onChange={props.onForce}  checked={props.force} id="comments" aria-describedby="comments-description" name="comments" type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
     			</div>
     			<div className="ml-3 text-sm">
-      	  	  	  <label for="comments" className="font-sm text-gray-700">Force</label>
+      	  	  	  <label for="comments" className="font-sm text-gray-700 whitespace-nowrap">Fetch from Github</label>
     			</div>
   	  	   </div>
 

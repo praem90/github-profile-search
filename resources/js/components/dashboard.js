@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Dashboard = () => {
 	const [query, setQuery] = useState('');
-	const [force, setForce] = useState(true);
+	const [force, setForce] = useState(false);
 	const [profiles, setProfiles] = useState([]);
 	const [info, setInfo] = useState({
 		current_page: 1,
