@@ -4,9 +4,9 @@ export default props => {
 	const [details, setDetails] = useState({});
 
 	useEffect(() => {
-		fetch('/profile/'+props.selected.login).then(res => {
+		axios.get('/profile/'+props.selected.login).then(res => {
 			setDetails(res.data);
-		}).catch(f => {
+		}).catch(() => {
 			props.onClose();
 		});
 	}, []);
@@ -25,22 +25,46 @@ export default props => {
             		</svg>
           	  	  </button>
         		</div>
-
-        		<div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
-          	  	  <div className="px-4 sm:px-6">
-            		<h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
-              	  	  Panel title
-            		</h2>
-          	  	  </div>
-          	  	  <div className="mt-6 relative flex-1 px-4 sm:px-6">
-            		<div className="absolute inset-0 px-4 sm:px-6">
-              	  	  <div className="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div>
-            		</div>
-          	  	  </div>
-        		</div>
+        		{details ? <PanelBody key={details.id} details={details} /> : ''}
       	  	  </div>
     		</div>
   	  	  </div>
 		</div>
 	)
 }
+
+const PanelBody = props => (
+	<div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
+      <div className="px-4 sm:px-6">
+        <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
+        	{props.details.detail?.name}
+        </h2>
+      </div>
+      <div className="mt-6 relative flex-1 px-4 sm:px-6">
+        <div className="absolute inset-0 px-4 sm:px-6">
+    		<div className="h-full " aria-hidden="true">
+    			<div className="flex">
+    				<img className="w-48 rounded-md" src={props.details?.avatar_url} />
+    				<div className="pl-3">
+    					<p>Username: <span className="text-sm">{props.details?.login}</span></p>
+    					<p>Email: <span className="text-sm">{props.details?.detail?.email}</span></p>
+    					<p>Location: <span className="text-sm">{props.details?.detail?.location}</span></p>
+    					<p>Join Date: <span className="text-sm">{props.details?.detail?.created_at}</span></p>
+    					<p>
+    						<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+    							Followers {props.details.followers}
+    						</span>
+    						<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+    							Following {props.details.detail?.following}
+    						</span>
+    					</p>
+    				</div>
+    			</div>
+    			<div className="w-full mt-3">
+    				<p>{props.details.detail?.bio}</p>
+    			</div>
+    		</div>
+        </div>
+      </div>
+      </div>
+)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Middleware\RequestLogMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,9 @@ Route::middleware('auth')->group(function () {
     	return view('dashboard');
 	})->name('dashboard');
 
-	Route::get('profile/search', SearchController::class)->name('search');
+	Route::middleware(RequestLogMiddleware::class)->get('profile/search', SearchController::class)->name('search');
 
-	Route::get('profile/{username}', ProfileController::class)->name('profile');
+	Route::middleware(RequestLogMiddleware::class)->get('profile/{username}', ProfileController::class)->name('profile');
 });
 
 require __DIR__.'/auth.php';

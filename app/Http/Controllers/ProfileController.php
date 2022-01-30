@@ -10,6 +10,8 @@ class ProfileController extends Controller
 	{
 		$profile = Profile::with('detail')->whereLogin($login)->firstOrFail();
 
+		$profile->increment('view_count');
+
 		return response()->json($profile);
 	}
 }

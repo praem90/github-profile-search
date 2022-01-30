@@ -10,12 +10,12 @@ class SearchController extends Controller
 {
 	public function __invoke(GithubRepository $githubRepository, ProfileRepository $profileRepository)
 	{
-		if (request()->has('query')) {
+		if (request()->has('query') && false) {
 			// We never import all the github profiles. Instead insert
 			// profiles only when search query is available
 			// Remember users list per query string for 24hrs
 			// Insert into the database if cache key is invalid
-			Cache::remember('profiles_search_' . request('query'), 60*24, function () use ($githubRepository) {
+			Cache::remember('profiles_search_' . request('query'), 60*60*24, function () use ($githubRepository) {
 				return $githubRepository->search(request('query'));
 			});
 		}
