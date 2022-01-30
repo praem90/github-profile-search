@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Profile;
 use App\Models\ProfileDetail;
+use App\Models\Repository;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -58,6 +59,12 @@ class ProfileRepository
 		$profile->save();
 		$profile->detail->save($detail);
 
+		Repository::where('profile_id', $user['profile']->id)
+			->whereIn('id', $user['repos']->pluck('id')->all()->toArray())
+			->delete();
+
+		Repository::insert($user['repos']->toArray());
+
 		return $profile;
 	}
 
@@ -100,7 +107,9 @@ class ProfileRepository
 		$details->created_at = Carbon::parse(Arr::get($user, 'created_at'))->toDateTimeString();
 		$details->updated_at = Carbon::parse(Arr::get($user, 'updated_at'))->toDateTimeString();
 
-		return ['profile' => $profile, 'detail' => $details];
+		$repos = $user['repos'];
+
+		return ['profile' => $profile, 'detail' => $details, 'repos' => $repos];
 	}
 
 	public function bulkInsert(Collection $users)
@@ -114,5 +123,9 @@ class ProfileRepository
 
 		Profile::insert($profiles->toArray());
 		ProfileDetail::insert($details->toArray());
+
+		$users->each(function ($user) {
+			Repository::insert($user['repos']->toArray());
+		});
 	}
 }
