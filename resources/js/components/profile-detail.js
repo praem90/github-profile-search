@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import RepoList from './repositories';
 
 export default props => {
 	const [details, setDetails] = useState({});
@@ -68,6 +69,9 @@ const PanelBody = props => (
     			</div>
     			<div className="w-full mt-3">
     				<p>{props.details.detail?.bio}</p>
+    			</div>
+    			<div className="w-full mt-3">
+    				{props.details.repos ? <RepoList repos={props.details.repos}/>: ''}
     			</div>
     		</div>
         </div>

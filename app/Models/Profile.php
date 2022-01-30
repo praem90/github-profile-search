@@ -33,4 +33,8 @@ class Profile extends Model
 	public function detail() {
 		return $this->hasOne(ProfileDetail::class);
 	}
+
+	public function repos() {
+		return $this->hasMany(Repository::class);
+	}
 }
