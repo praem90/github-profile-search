@@ -10,7 +10,7 @@ class SearchController extends Controller
 {
 	public function __invoke(GithubRepository $githubRepository, ProfileRepository $profileRepository)
 	{
-		if (request()->has('query') && false) {
+		if (request()->has('query') && request('force')) {
 			// We never import all the github profiles. Instead insert
 			// profiles only when search query is available
 			// Remember users list per query string for 24hrs

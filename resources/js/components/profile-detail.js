@@ -15,7 +15,7 @@ export default props => {
 		<div className={"fixed inset-0 overflow-hidden z-50 " + (props.selected ? '' : 'hidden')} aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
   	  	  <div className="absolute inset-0 overflow-hidden">
     		<div className={"absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity ease-in-out duration-500 " + ( props.selected ? '': 'opacity-0')} aria-hidden="true"></div>
-    		<div className={"fixed inset-y-0 right-0 pl-10 max-w-full flex transform transition ease-in-out duration-500 sm:duration-700 " + (props.selected ? '' : 'translate-x-full')}>
+    		<div className={"fixed inset-y-0 right-0 pl-10 max-w-6xl flex transform transition ease-in-out duration-500 sm:duration-700 " + (props.selected ? '' : 'translate-x-full')}>
       	  	  <div className="relative w-screen max-w-md">
         		<div className="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
           	  	  <button onClick={props.onClose} type="button" className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
