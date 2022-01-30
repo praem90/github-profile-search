@@ -11,7 +11,9 @@ use App\Http\Middleware\RequestLogMiddleware;
  *
  * Isolated into a seperate file to use anyware
  */
-Route::middleware(RequestLogMiddleware::class)->get('profile/search', SearchController::class)->name('search');
+Route::middleware(RequestLogMiddleware::class)->group(function () {
+	Route::get('profile/search', SearchController::class)->name('search');
+	Route::get('profile/popular', PopularProfilesController::class)->name('popular');
+	Route::get('profile/{username}', ProfileController::class)->name('profile');
+});
 
-Route::middleware(RequestLogMiddleware::class)->get('profile/popular', PopularProfilesController::class)->name('popular');
-Route::middleware(RequestLogMiddleware::class)->get('profile/{username}', ProfileController::class)->name('profile');
