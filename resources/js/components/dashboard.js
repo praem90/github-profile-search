@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const Dashboard = () => {
 	const [query, setQuery] = useState('');
+	const [force, setForce] = useState(true);
 	const [profiles, setProfiles] = useState([]);
 	const [info, setInfo] = useState({
 		current_page: 1,
@@ -22,9 +23,15 @@ const Dashboard = () => {
 		}
 		params.set('page', info.current_page);
 
+		if (force) {
+			params.set('force', force);
+		}
+
 		axios.get('/profile/search', {params}).then(res => {
 			const {data, ...info} = res.data;
 			setProfiles(data);
+			info.to = info.to || 0;
+			info.from = info.from || 0;
 			setInfo(info);
 		});
 	}
@@ -32,6 +39,10 @@ const Dashboard = () => {
 	const onChange = e => {
 		setInfo({...info, ...{current_page: 1}});
 		setQuery(e.target.value);
+	}
+
+	const onForceChange = e => {
+		setForce(e.target.checked);
 	}
 
 	const next = () => {
@@ -56,7 +67,7 @@ const Dashboard = () => {
 
 	return (
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8" >
-			<SearchBar onChange={_.debounce(onChange, 500)}/>
+			<SearchBar onChange={_.debounce(onChange, 500)} onForce={onForceChange} force={force} />
 			<ProfileList profiles={profiles} />
 			<Pagination prev={prev} next={next} info={info} />
 		</div>
