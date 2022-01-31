@@ -38,8 +38,8 @@ class ImportProfilesJob implements ShouldQueue
 		// profiles only when search query is available
 		// Remember users list per query string for 24hrs
 		// Insert into the database if cache key is invalid
-		Cache::remember('profiles_search_' . request('query'), 60*60*24, function () use ($githubRepository) {
-			return $githubRepository->search(request('query'));
+		Cache::remember('profiles_search_' . $this->query, 60*60*24, function () use ($githubRepository) {
+			return $githubRepository->search($this->query);
 		});
     }
 }
