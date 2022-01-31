@@ -47,10 +47,10 @@ const PanelBody = props => (
     			<div className="flex">
     				<img className="w-48 rounded-md" src={props.details?.avatar_url} />
     				<div className="pl-3">
-    					<p>Username: <span className="text-sm">{props.details?.login}</span></p>
-    					<p>Email: <span className="text-sm">{props.details?.detail?.email}</span></p>
-    					<p>Location: <span className="text-sm">{props.details?.detail?.location}</span></p>
-    					<p>Join Date: <span className="text-sm">{props.details?.detail?.created_at}</span></p>
+    					<p><span className="text-sm">{props.details?.login}</span></p>
+    					<p><span className="text-sm">{props.details?.detail?.email}</span></p>
+    					<p><span className="text-sm">{props.details?.detail?.location}</span></p>
+    					<p><span className="text-sm">{props.details?.detail?.created_at}</span></p>
     					<p>
     						<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
     							Followers {props.details.followers}
