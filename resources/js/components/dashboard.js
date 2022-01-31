@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SearchBar from './search';
 import ProfileList from './profile-list';
 import Pagination from './pagination';
+import Empty from './empty';
 import axios from 'axios';
 
 const Dashboard = () => {
@@ -69,7 +70,8 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8" >
 			<SearchBar onChange={_.debounce(onChange, 500)} onForce={onForceChange} force={force} />
 			<ProfileList profiles={profiles} />
-			<Pagination prev={prev} next={next} info={info} />
+			{profiles.length === 0 ? <Empty title="No profiles found"/> : <Pagination prev={prev} next={next} info={info} />}
+
 		</div>
 	)
 }

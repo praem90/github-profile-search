@@ -71,7 +71,7 @@ const PanelBody = props => (
     				<p>{props.details.detail?.bio}</p>
     			</div>
     			<div className="w-full mt-3">
-    				{props.details.repos ? <RepoList repos={props.details.repos}/>: ''}
+    				<RepoList profile_id={props.details.id} />
     			</div>
     		</div>
         </div>

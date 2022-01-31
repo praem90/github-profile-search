@@ -8,7 +8,7 @@ class ProfileController extends Controller
 {
 	public function __invoke($login)
 	{
-		$profile = Profile::with(['detail', 'repos'])->whereLogin($login)->firstOrFail();
+		$profile = Profile::with(['detail'])->whereLogin($login)->firstOrFail();
 
 		$profile->increment('view_count');
 

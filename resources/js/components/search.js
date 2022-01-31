@@ -3,7 +3,7 @@ const React = require('react');
 const searchBar = props => {
 	return (
 		<div className="flex-1 flex flex-row items-center mb-6">
-  			<div className="w-full mr-3">
+  			<div className="w-full ">
     			<label htmlFor="search" className="sr-only">Search Profiles</label>
     			<div className="relative text-gray-300 focus-within:text-gray-400">
     				<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -15,18 +15,21 @@ const searchBar = props => {
     			</div>
   			</div>
 
-			<div className="relative flex items-start">
-    			<div className="flex items-center h-5">
-      	  	  	  <input onChange={props.onForce}  checked={props.force} id="comments" aria-describedby="comments-description" name="comments" type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
-    			</div>
-    			<div className="ml-3 text-sm">
-      	  	  	  <label for="comments" className="font-sm text-gray-700 whitespace-nowrap">Fetch from Github</label>
-    			</div>
-  	  	   </div>
-
+			{props.searchOnly ? '' : <Checkbox onForce={props.onForce} force={props.force}  /> }
 		</div>
 	)
 }
 
+const Checkbox = (props) => (
+			<div className="relative flex items-start ml-3">
+    			<div className="flex items-center h-5">
+      	  	  	  <input onChange={props.onForce}  checked={props.force} id="comments" aria-describedby="comments-description" name="comments" type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+    			</div>
+    			<div className="ml-3 text-sm">
+      	  	  	  <label htmlFor="comments" className="font-sm text-gray-700 whitespace-nowrap">Fetch from Github</label>
+    			</div>
+  	  	   </div>
+
+)
 
 export default searchBar;
